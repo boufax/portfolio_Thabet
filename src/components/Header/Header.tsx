@@ -69,7 +69,7 @@ const Header = () => {
                 </nav>
 
                 <div className={styles.actions}>
-                    <a href={lang === "FR" ? "/portfolio_Thabet/cv/CV_Thabet_FR.pdf" : "/portfolio_Thabet/cv/CV_Thabet_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="CV">
+                    <a href={lang === "FR" ? "/cv/CV_Thabet_FR.pdf" : "/cv/CV_Thabet_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="CV">
                         <Download size={20} />
                     </a>
                     <a href="https://www.linkedin.com/in/thabet-bouguerra-48bb94232/" target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="LinkedIn">
@@ -82,7 +82,7 @@ const Header = () => {
                     }}>
                         <span className={lang === "FR" ? styles.activeLang : ""}>FR</span> | <span className={lang === "EN" ? styles.activeLang : ""}>EN</span>
                     </button>
-                    <a href="mailto:thabetbouguerra5@gmail.com" className={styles.contactBtn}>
+                    <a href="#contact" onClick={(e) => scrollToSection(e, "contact")} className={styles.contactBtn}>
                         Contact
                     </a>
                 </div>
