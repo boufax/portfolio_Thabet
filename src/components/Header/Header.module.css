@@ -1,0 +1,112 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    transition: background-color var(--transition-smooth);
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--foreground);
+    letter-spacing: -0.05em;
+}
+
+.accentDot {
+    color: var(--bleu);
+}
+
+.nav {
+    display: flex;
+    gap: var(--spacing-6);
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+}
+
+.navLink {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.2s ease-out;
+    /* 0.2s fluid transition */
+}
+
+.navLink:hover,
+.navLink.active {
+    color: var(--bleu);
+    /* Active section turns blue */
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+}
+
+.iconLink {
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.2s ease-out, color 0.2s ease-out;
+}
+
+.iconLink:hover {
+    color: var(--foreground);
+    filter: brightness(1.2);
+}
+
+.langToggle {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    transition: color 0.2s ease-out;
+}
+
+.activeLang {
+    color: var(--foreground);
+}
+
+.contactBtn {
+    background: var(--blanc);
+    color: var(--noir);
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform var(--transition-fast), background var(--transition-fast);
+    display: inline-block;
+}
+
+.contactBtn:hover {
+    background: var(--bleu);
+    color: white;
+    transform: scale(1.05);
+}

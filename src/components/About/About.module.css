@@ -1,0 +1,71 @@
+.aboutSection {
+    background-color: var(--background);
+    position: relative;
+    padding-bottom: var(--spacing-8);
+}
+
+.container {
+    max-width: 900px;
+    /* Narrower for better readability of the intro text */
+}
+
+.sectionTitle {
+    color: var(--muted);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-8);
+    font-weight: 600;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+}
+
+.paragraph {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.4;
+    color: var(--muted);
+    font-weight: 500;
+    max-width: 100%;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
+    transition: color var(--transition-smooth);
+}
+
+/* Subtle hover interaction on the whole section to bring text to focus */
+.content:hover .paragraph {
+    color: var(--foreground);
+    opacity: 0.5;
+}
+
+.content .paragraph:hover {
+    opacity: 1;
+}
+
+.highlight {
+    color: var(--foreground);
+    position: relative;
+    display: inline-block;
+}
+
+/* Very subtle underline glow for keywords */
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--bleu), transparent);
+    opacity: 0.5;
+    transition: width var(--transition-smooth), opacity var(--transition-fast);
+}
+
+.highlight:hover::after {
+    opacity: 1;
+    background: var(--bleu);
+    box-shadow: 0 0 8px rgba(0, 113, 227, 0.6);
+}

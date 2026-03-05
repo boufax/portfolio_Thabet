@@ -1,0 +1,161 @@
+.experienceSection {
+    background-color: var(--background);
+}
+
+.sectionTitle {
+    margin-bottom: var(--spacing-12);
+    color: var(--muted);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.verticalLine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--bleu), transparent);
+    animation: growLine 2s ease-out forwards;
+    transform-origin: top;
+}
+
+@keyframes growLine {
+    from {
+        transform: scaleY(0);
+    }
+
+    to {
+        transform: scaleY(1);
+    }
+}
+
+.timelineItem {
+    position: relative;
+    padding-left: var(--spacing-12);
+    margin-bottom: var(--spacing-8);
+}
+
+.timelineItem:last-child {
+    margin-bottom: 0;
+}
+
+.timelineDot {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--background);
+    border: 2px solid var(--bleu);
+    box-shadow: 0 0 10px rgba(0, 113, 227, 0.4);
+    z-index: 10;
+    transition: background-color var(--transition-fast);
+}
+
+.timelineContent {
+    background-color: var(--surface);
+    padding: var(--spacing-6);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle glow effect on hover */
+.timelineContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.05), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.timelineContent:hover {
+    transform: translateX(8px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.timelineContent:hover::before {
+    opacity: 1;
+}
+
+.timelineItem:hover .timelineDot {
+    background-color: var(--bleu);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-4);
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    position: relative;
+    z-index: 1;
+}
+
+.role {
+    margin-bottom: var(--spacing-1);
+    font-size: 1.5rem;
+}
+
+.company {
+    font-weight: 600;
+    color: var(--bleu);
+}
+
+.location {
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.period {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    background-color: var(--background);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+}
+
+.description {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .verticalLine {
+        left: 10px;
+    }
+
+    .timelineDot {
+        left: 5px;
+    }
+
+    .timelineItem {
+        padding-left: var(--spacing-8);
+    }
+}
