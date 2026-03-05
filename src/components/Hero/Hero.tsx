@@ -35,10 +35,11 @@ const Hero = () => {
                     </div>
 
                     <div className={`${styles.actions} animate-fade-in-up delay-800`}>
-                        <a href="#contact" className={styles.primaryBtn}>
+                    <div className={`${styles.actions} animate-fade-in-up delay-800`}>
+                        <a href="mailto:thabetbouguerra5@gmail.com" className={styles.primaryBtn}>
                             {t("hero.contact")}
                         </a>
-                        <a href={lang === "FR" ? "/cv/CV_Thabet_FR.pdf" : "/cv/CV_Thabet_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn}>
+                        <a href={lang === "FR" ? "/portfolio_Thabet/cv/CV_Thabet_FR.pdf" : "/portfolio_Thabet/cv/CV_Thabet_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn}>
                             {t("hero.cv")}
                         </a>
                         <a href="#projects" className={styles.secondaryBtn}>
