@@ -38,7 +38,7 @@ const Hero = () => {
                         <a href="mailto:thabetbouguerra5@gmail.com" className={styles.primaryBtn}>
                             {t("hero.contact")}
                         </a>
-                        <a href={lang === "FR" ? "/portfolio_Thabet/cv/CV_Thabet_FR.pdf" : "/portfolio_Thabet/cv/CV_Thabet_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn}>
+                        <a href={lang === "FR" ? "./cv/CV_THABET_FR.pdf" : "./cv/CV_THABET_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.secondaryBtn}>
                             {t("hero.cv")}
                         </a>
                         <a href="#projects" className={styles.secondaryBtn}>
