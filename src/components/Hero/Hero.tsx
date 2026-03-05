@@ -35,7 +35,6 @@ const Hero = () => {
                     </div>
 
                     <div className={`${styles.actions} animate-fade-in-up delay-800`}>
-                    <div className={`${styles.actions} animate-fade-in-up delay-800`}>
                         <a href="mailto:thabetbouguerra5@gmail.com" className={styles.primaryBtn}>
                             {t("hero.contact")}
                         </a>
