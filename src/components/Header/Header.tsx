@@ -69,7 +69,7 @@ const Header = () => {
                 </nav>
 
                 <div className={styles.actions}>
-                    <a href={lang === "FR" ? "./cv/CV_Thabet_FR.pdf" : "./cv/CV_Thabet_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="CV">
+                    <a href={lang === "FR" ? "./cv/CV_THABET_FR.pdf" : "./cv/CV_THABET_EN.pdf"} target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="CV">
                         <Download size={20} />
                     </a>
                     <a href="https://www.linkedin.com/in/thabet-bouguerra-48bb94232/" target="_blank" rel="noopener noreferrer" className={styles.iconLink} aria-label="LinkedIn">
