@@ -5,8 +5,8 @@ import Footer from "@/components/Footer/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "Thabet Bouguerra | Data Analyst",
-  description: "Portfolio of Thabet Bouguerra, Data Analyst",
+  title: "Thabet Bouguerra | Analytics Engineer",
+  description: "Portfolio of Thabet Bouguerra, Analytics Engineer",
 };
 
 export default function RootLayout({
