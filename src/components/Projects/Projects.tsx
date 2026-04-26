@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useIntersectionObserver as useScrollReveal } from "@/hooks/useIntersectionObserver";
 import { LineChart, Brain, CircleDollarSign, LayoutDashboard, Database, GitBranch, TrendingUp, Cloud } from "lucide-react";
 import styles from "./Projects.module.css";
 
@@ -304,11 +305,14 @@ const Projects = () => {
     const [isAnimating, setIsAnimating] = useState(false);
 
     const { setElements, visibleEntries } = useIntersectionObserver({ rootMargin: "-20% 0px -50% 0px", threshold: 0.1 });
+    const { setElements: setRevealElements, visibleEntries: revealedItems } = useScrollReveal({ threshold: 0.08 });
     const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
-        setElements(timelineRefs.current.filter(Boolean) as Element[]);
-    }, [setElements, activeFilter]); // Re-observe when filter changes
+        const els = timelineRefs.current.filter(Boolean) as Element[];
+        setElements(els);
+        setRevealElements(els);
+    }, [setElements, setRevealElements, activeFilter]);
 
     // Find the currently active project based on scroll intersection
     const activeEntry = visibleEntries.find(e => e.isIntersecting);
@@ -364,12 +368,15 @@ const Projects = () => {
                         {filteredProjects.map((project, index) => {
                             const isExpanded = expandedId === project.id;
                             const isActiveScroll = activeIndex === index;
+                            const el = timelineRefs.current[index] ?? null;
+                            const isRevealed = el !== null && revealedItems.has(el);
 
                             return (
                                 <div
                                     key={project.id}
                                     ref={el => { timelineRefs.current[index] = el; }}
-                                    className={`${styles.timelineItem} animate-fade-in-up delay-${Math.min((index % 4 + 1) * 100, 600)}`}
+                                    className={`${styles.timelineItem} ${isRevealed ? styles.scrollVisible : styles.scrollHidden}`}
+                                    style={{ animationDelay: isRevealed ? `${(index % 4) * 70}ms` : '0ms' }}
                                 >
                                     <div className={`${styles.timelineDot} ${isActiveScroll || isExpanded ? styles.activeDot : ''}`}></div>
 

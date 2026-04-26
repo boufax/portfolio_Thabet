@@ -1,10 +1,18 @@
 "use client";
+import { useRef, useEffect } from "react";
 import { BarChart, Brain, Database, Cloud } from "lucide-react";
 import styles from "./Skills.module.css";
 import { useLanguage } from "@/context/LanguageContext";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const Skills = () => {
     const { t } = useLanguage();
+    const { setElements, visibleEntries } = useIntersectionObserver({ threshold: 0.15 });
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        setElements(cardRefs.current.filter(Boolean) as Element[]);
+    }, [setElements]);
 
     const categories = [
         {
@@ -35,8 +43,16 @@ const Skills = () => {
                 <h2 className={`${styles.sectionTitle} animate-slide-in-right`}>{t("skills.title")}</h2>
 
                 <div className={styles.grid}>
-                    {categories.map((category, idx) => (
-                        <div key={idx} className={`${styles.categoryCard} animate-fade-in-up delay-${(idx + 1) * 200}`}>
+                    {categories.map((category, idx) => {
+                        const el = cardRefs.current[idx] ?? null;
+                        const isRevealed = el !== null && visibleEntries.has(el);
+                        return (
+                        <div
+                            key={idx}
+                            ref={el => { cardRefs.current[idx] = el; }}
+                            className={`${styles.categoryCard} ${isRevealed ? styles.scrollVisible : styles.scrollHidden}`}
+                            style={{ animationDelay: isRevealed ? `${idx * 100}ms` : '0ms' }}
+                        >
                             <div className={styles.cardHeader}>
                                 <span className={styles.icon}>{category.icon}</span>
                                 <h3 className={styles.categoryTitle}>{category.title}</h3>
@@ -50,7 +66,8 @@ const Skills = () => {
                                 ))}
                             </div>
                         </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

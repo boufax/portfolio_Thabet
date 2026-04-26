@@ -304,3 +304,24 @@ img {
 .animate-bounce-subtle {
   animation: bounceSubtle 2s infinite;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-fade-in-up,
+  .animate-scale-up,
+  .animate-blur-in,
+  .animate-slide-in-left,
+  .animate-slide-in-right {
+    opacity: 1;
+  }
+  .animate-typing {
+    width: 100%;
+    border-right: none;
+  }
+}

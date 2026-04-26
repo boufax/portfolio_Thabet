@@ -7,6 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const Header = () => {
     const [activeSection, setActiveSection] = useState("");
+    const [menuOpen, setMenuOpen] = useState(false);
     const { lang, setLang, t } = useLanguage();
 
     useEffect(() => {
@@ -29,10 +30,15 @@ const Header = () => {
         };
 
         window.addEventListener("scroll", handleScroll);
-        // Initial check
         handleScroll();
 
         return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const handleResize = () => { if (window.innerWidth > 768) setMenuOpen(false); };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -41,6 +47,11 @@ const Header = () => {
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
         }
+    };
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        scrollToSection(e, id);
+        setMenuOpen(false);
     };
 
     return (
@@ -77,7 +88,6 @@ const Header = () => {
                     </a>
                     <button className={styles.langToggle} onClick={() => {
                         setLang(lang === "FR" ? "EN" : "FR");
-                        // Also physically update HTML lang attribute (useful for a11y)
                         document.documentElement.lang = lang === "FR" ? "en" : "fr";
                     }}>
                         <span className={lang === "FR" ? styles.activeLang : ""}>FR</span> | <span className={lang === "EN" ? styles.activeLang : ""}>EN</span>
@@ -86,7 +96,29 @@ const Header = () => {
                         Contact
                     </a>
                 </div>
+
+                <button
+                    className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
+                    onClick={() => setMenuOpen(o => !o)}
+                    aria-label="Toggle menu"
+                    aria-expanded={menuOpen}
+                >
+                    <span className={styles.hamburgerLine} />
+                    <span className={styles.hamburgerLine} />
+                    <span className={styles.hamburgerLine} />
+                </button>
             </div>
+
+            {menuOpen && (
+                <nav className={styles.mobileNav}>
+                    <a href="#experience" onClick={(e) => handleNavClick(e, "experience")} className={styles.mobileNavLink}>{t("nav.experience")}</a>
+                    <a href="#projects" onClick={(e) => handleNavClick(e, "projects")} className={styles.mobileNavLink}>{t("nav.projects")}</a>
+                    <a href="#skills" onClick={(e) => handleNavClick(e, "skills")} className={styles.mobileNavLink}>{t("nav.skills")}</a>
+                    <a href="#education" onClick={(e) => handleNavClick(e, "education")} className={styles.mobileNavLink}>{t("nav.education")}</a>
+                    <a href="#interests" onClick={(e) => handleNavClick(e, "interests")} className={styles.mobileNavLink}>{t("nav.interests")}</a>
+                    <a href="mailto:thabetbouguerra5@gmail.com" className={styles.mobileContactBtn}>Contact</a>
+                </nav>
+            )}
         </header>
     );
 };
