@@ -1,0 +1,62 @@
+.footer {
+    background-color: var(--surface);
+    padding: var(--spacing-12) 0 var(--spacing-6);
+    border-top: 1px solid var(--border);
+}
+
+.footerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
+}
+
+.name {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-1);
+    color: var(--foreground);
+}
+
+.role {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-4);
+}
+
+.contact {
+    color: var(--bleu);
+    font-weight: 500;
+}
+
+.contact:hover {
+    text-decoration: underline;
+}
+
+.links {
+    display: flex;
+    gap: var(--spacing-4);
+}
+
+.link {
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.link:hover {
+    color: var(--bleu);
+}
+
+.bottom {
+    padding-top: var(--spacing-6);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0;
+}
